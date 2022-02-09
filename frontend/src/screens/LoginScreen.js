@@ -19,6 +19,7 @@ const LoginScreen = ({ location, history }) => {
   useEffect(() => {
     if (userInfo) {
       history.push(redirect);
+      window.location.reload(true);
     }
   }, [history, redirect, userInfo]);
 

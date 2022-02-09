@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
 const SearchBox = ({ history }) => {
   const [keyword, setKeyword] = useState("");
 
-  const submitHandler = (e) => {
-    e.preventDefault();
+  useEffect(() => {
     if (keyword.trim()) {
       history.push(`/search/${keyword}`);
     } else {
       history.push("/");
     }
+  }, [keyword, history]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
   };
 
   return (
-    <Form onSubmit={submitHandler} className="d-flex" inline>
+    <Form onSubmit={submitHandler} className="d-flex" inline="true">
       <Form.Control
         type="text"
         name="q"

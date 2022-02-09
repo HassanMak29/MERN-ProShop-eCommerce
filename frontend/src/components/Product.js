@@ -1,9 +1,18 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../actions/cartActions";
 
 const Product = ({ product }) => {
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.userLogin);
+
+  const addToCartHandler = () => {
+    dispatch(addToCart(product._id, 1, userInfo?.name));
+  };
+
   return (
     <Card className="my-3 p-3 rounded">
       <Link to={`/product/${product._id}`}>
@@ -23,6 +32,9 @@ const Product = ({ product }) => {
 
         <Card.Text as="h3">${product.price}</Card.Text>
       </Card.Body>
+      <Button type="button" className="btn-block" onClick={addToCartHandler}>
+        Add To Cart
+      </Button>
     </Card>
   );
 };

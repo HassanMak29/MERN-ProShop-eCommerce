@@ -17,9 +17,16 @@ export const cartReducer = (
       if (existItem) {
         return {
           ...state,
-          cartItems: state.cartItems.map((x) =>
-            x.product === existItem.product ? item : x
-          ),
+          cartItems: [
+            ...state.cartItems.map((x) =>
+              x.product === existItem.product
+                ? { ...item, qty: x.qty < x.countInStock ? x.qty + 1 : x.qty }
+                : x
+            ),
+          ],
+          // cartItems: state.cartItems.map((x) =>
+          //   x.product === existItem.product ? item : x
+          // ),
         };
       } else {
         return {

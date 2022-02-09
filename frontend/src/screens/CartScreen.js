@@ -19,15 +19,16 @@ const CartScreen = ({ match, location, history }) => {
 
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
+  const { userInfo } = useSelector((state) => state.userLogin);
 
   useEffect(() => {
     if (productId) {
-      dispatch(addToCart(productId, qty));
+      dispatch(addToCart(productId, qty, userInfo?.name));
     }
-  }, [productId, dispatch, qty]);
+  }, [productId, dispatch, qty, userInfo?.name]);
 
   const removeFromCartHandler = (id) => {
-    dispatch(removeFromCart(id));
+    dispatch(removeFromCart(id, userInfo?.name));
   };
 
   const checkoutHandler = () => {
