@@ -32,7 +32,12 @@ const Product = ({ product }) => {
 
         <Card.Text as="h3">${product.price}</Card.Text>
       </Card.Body>
-      <Button type="button" className="btn-block" onClick={addToCartHandler}>
+      <Button
+        type="button"
+        className="btn-block"
+        onClick={addToCartHandler}
+        disabled={product.countInStock === 0}
+      >
         Add To Cart
       </Button>
     </Card>
