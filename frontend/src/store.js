@@ -28,8 +28,6 @@ import {
   orderPayReducer,
   orderDeliverReducer,
 } from "./reducers/orderReducers";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -59,15 +57,11 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
-console.log(userInfoFromStorage);
-
 const cartItemsFromStorage = localStorage.getItem(
   `${userInfoFromStorage?.name}`
 )
   ? JSON.parse(localStorage.getItem(`${userInfoFromStorage?.name}`))
   : [];
-
-console.log(cartItemsFromStorage);
 
 const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
   ? JSON.parse(localStorage.getItem("shippingAddress"))
